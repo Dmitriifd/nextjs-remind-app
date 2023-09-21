@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
+import NavBar from '@/components/NavBar';
+import { Separator } from '@/components/ui/separator';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +30,8 @@ export default function RootLayout({
              items-center
              dark:bg-black'
           >
+            <NavBar />
+            <Separator />
             {children}
           </div>
         </body>

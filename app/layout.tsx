@@ -29,8 +29,8 @@ export default function RootLayout({
           colorScheme: 'dark',
         }}
       >
-        <ThemeProvider>
-          <body>
+        <body>
+          <ThemeProvider>
             <div
               className='
              flex
@@ -47,8 +47,8 @@ export default function RootLayout({
                 <Toaster />
               </main>
             </div>
-          </body>
-        </ThemeProvider>
+          </ThemeProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

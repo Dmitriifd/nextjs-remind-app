@@ -26,7 +26,7 @@ function TaskCard({ task }: { task: Task }) {
         id={task.id.toString()}
         className='w-5 h-5'
         checked={task.done}
-        disabled={task.done || isLoading}
+        disabled={isLoading}
         onCheckedChange={() => {
           startTransition(async () => {
             await setTaskToDone(task.id);

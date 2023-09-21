@@ -33,6 +33,12 @@ export async function setTaskToDone(id: number) {
   if (!user) {
     throw new Error('user not found');
   }
+  
+  const task = await prisma.task.findUnique({
+    where: {
+      id,
+    },
+  })
 
   return await prisma.task.update({
     where: {
@@ -40,7 +46,7 @@ export async function setTaskToDone(id: number) {
       userId: user.id,
     },
     data: {
-      done: true,
+      done: !task?.done,
     },
   });
 }

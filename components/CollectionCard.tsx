@@ -26,6 +26,7 @@ import {
 import { deleteCollection } from "@/actions/collection";
 import { toast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
+import CreateTaskDialog from "./CreateTaskDialog";
 import TaskCard from "./TaskCard";
 
 interface Props {
@@ -37,6 +38,8 @@ interface Props {
 function CollectionCard({ collection }: Props) {
   const [isOpen, setIsOpen] = useState(true);
   const router = useRouter();
+
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const tasks = collection.tasks;
 
@@ -69,6 +72,12 @@ function CollectionCard({ collection }: Props) {
 
   return (
     <>
+      <CreateTaskDialog
+        open={showCreateModal}
+        setOpen={setShowCreateModal}
+        collection={collection}
+      />
+
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger asChild>
           <Button
@@ -89,6 +98,7 @@ function CollectionCard({ collection }: Props) {
             <Button
               variant={"ghost"}
               className="flex items-center justify-center gap-1 p-8 py-12 rounded-none"
+              onClick={() => setShowCreateModal(true)}
             >
               <p>There are no tasks yet:</p>
               <span
@@ -120,6 +130,7 @@ function CollectionCard({ collection }: Props) {
                 <Button
                   size={"icon"}
                   variant={"ghost"}
+                  onClick={() => setShowCreateModal(true)}
                 >
                   <PlusIcon />
                 </Button>
